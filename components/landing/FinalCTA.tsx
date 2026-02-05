@@ -21,7 +21,7 @@ export default function FinalCTA() {
             asChild
             size="lg"
             variant="outline"
-            className="rounded-xl px-6 text-base border-white text-white hover:bg-white/10"
+            className="rounded-xl px-6 text-base border-white bg-transparent !text-white hover:bg-white/10 hover:!text-white"
           >
             <Link href="#how-it-works">Schedule Demo</Link>
           </Button>
