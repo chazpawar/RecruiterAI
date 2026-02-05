@@ -7,10 +7,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Logo = () => (
-  <div className="flex items-center space-x-2">
-    <div className="w-8 h-8 bg-gradient-to-br from-[#1f1687] to-purple-600 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-sm">R</span>
-    </div>
+  <div className="flex items-center">
     <span className="text-xl font-bold text-foreground">RecruiterAI</span>
   </div>
 );

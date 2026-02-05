@@ -8,60 +8,52 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { HeroHeader } from '@/components/landing/HeroHeader';
 
-// Pain point bubbles data
+// Pain point bubbles data - positioned around central headline
 const painPointBubbles = [
   {
-    text: "We've been searching for a senior dev for 3 months...",
-    role: "Startup Founder",
-    position: { top: '15%', left: '3%' },
-    delay: 1.2,
-    floatDuration: 4,
-  },
-  {
-    text: "Screening 200+ resumes weekly is exhausting",
-    role: "HR Manager",
-    position: { top: '25%', right: '5%' },
-    delay: 1.5,
+    name: "Sarah K.",
+    role: "Founder at TechStart",
+    text: "Candidates wait 3 weeks for replies while I'm juggling everything. We're losing great talent to competitors.",
+    position: { top: '18%', left: '5%' }, // Top-Left
+    delay: 0.8,
     floatDuration: 4.5,
   },
   {
-    text: "Our best candidates keep dropping off mid-process",
-    role: "Talent Lead",
-    position: { top: '45%', left: '2%' },
-    delay: 1.8,
+    name: "Rahul M.",
+    role: "Hiring Manager at GrowthCo",
+    text: "Posted on LinkedIn. Got 200 applications. Skimmed through 20. Hired on gut feeling. They quit in 2 months.",
+    position: { top: '18%', right: '5%' }, // Top-Right
+    delay: 1.0,
     floatDuration: 5,
   },
   {
-    text: "How do we assess cultural fit remotely?",
-    role: "CEO",
-    position: { top: '55%', right: '3%' },
-    delay: 2.1,
+    name: "Priya S.",
+    role: "CEO at InnovateLabs",
+    text: "I'm the CEO, product lead, AND now doing HR? There's zero time to read 200 resumes properly.",
+    position: { top: '52%', left: '3%' }, // Bottom-Left
+    delay: 1.2,
     floatDuration: 4.2,
   },
   {
-    text: "Coordinating interviews across timezones is a nightmare",
-    role: "Recruiter",
-    position: { top: '70%', left: '8%' },
-    delay: 2.4,
+    name: "Amit T.",
+    role: "Head of HR at ScaleUp",
+    text: "Our best candidate accepted another offer while we were still scheduling interviews. This keeps happening.",
+    position: { top: '52%', right: '3%' }, // Bottom-Right
+    delay: 1.4,
     floatDuration: 4.8,
-  },
-  {
-    text: "We lost a great hire because we moved too slow",
-    role: "Engineering Manager",
-    position: { top: '38%', right: '8%' },
-    delay: 2.7,
-    floatDuration: 5.2,
   },
 ];
 
 // Floating bubble component
 const PainPointBubble = ({
+  name,
   text,
   role,
   position,
   delay,
   floatDuration = 4,
 }: {
+  name: string;
   text: string;
   role: string;
   position: { top?: string; left?: string; right?: string; bottom?: string };
@@ -81,14 +73,22 @@ const PainPointBubble = ({
       style={position}
     >
       <div
-        className="max-w-[200px] bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-gray-100 animate-float"
+        className="max-w-[280px] bg-white/95 backdrop-blur-sm rounded-2xl px-5 py-4 shadow-xl border border-gray-200/60 animate-float"
         style={{
           animationDuration: `${floatDuration}s`,
           animationDelay: `${delay}s`,
         }}
       >
-        <p className="text-xs text-gray-700 leading-relaxed">&ldquo;{text}&rdquo;</p>
-        <p className="text-[10px] text-gray-400 mt-1.5 font-medium">— {role}</p>
+        <p className="text-sm text-gray-700 leading-relaxed italic">&ldquo;{text}&rdquo;</p>
+        <div className="mt-3 flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-xs font-semibold">
+            {name.split(' ').map(n => n[0]).join('')}
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-gray-900">{name}</p>
+            <p className="text-[11px] text-gray-500">{role}</p>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
@@ -248,10 +248,12 @@ export default function HeroSection() {
         {painPointBubbles.map((bubble, index) => (
           <PainPointBubble
             key={index}
+            name={bubble.name}
             text={bubble.text}
             role={bubble.role}
             position={bubble.position}
             delay={bubble.delay}
+            floatDuration={bubble.floatDuration}
           />
         ))}
         
@@ -306,7 +308,7 @@ export default function HeroSection() {
                     className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950"
                   >
                     <span className="text-foreground text-sm">
-                      Streamline Your Hiring Process
+                      AI-Powered Recruiting Platform
                     </span>
                     <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
 
@@ -327,9 +329,9 @@ export default function HeroSection() {
                   preset="fade-in-blur"
                   speedSegment={0.3}
                   as="h1"
-                  className="mx-auto mt-8 max-w-4xl text-balance text-5xl max-md:font-semibold md:text-7xl lg:mt-16 xl:text-[5.25rem]"
+                  className="mx-auto mt-8 max-w-4xl text-balance text-5xl font-bold max-md:font-semibold md:text-7xl lg:mt-16 xl:text-[5.25rem]"
                 >
-                  Streamline Your Hiring Process with RecruiterAI
+                  Every Hire, Faster and Better
                 </TextEffect>
                 <TextEffect
                   per="line"
@@ -337,9 +339,9 @@ export default function HeroSection() {
                   speedSegment={0.3}
                   delay={0.5}
                   as="p"
-                  className="mx-auto mt-8 max-w-2xl text-balance text-lg"
+                  className="mx-auto mt-8 max-w-2xl text-balance text-lg text-gray-600"
                 >
-                  Manage jobs, candidates, and assessments all in one place.
+                  Stop losing great candidates to slow, manual hiring processes. Let AI handle the heavy lifting while you focus on building your team.
                 </TextEffect>
 
                 <AnimatedGroup
@@ -354,27 +356,27 @@ export default function HeroSection() {
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
+                  className="mt-12 flex flex-col items-center justify-center gap-3 md:flex-row"
                 >
                   <Button
                     key={1}
                     asChild
                     size="lg"
-                    className="rounded-xl px-5 text-base"
+                    className="rounded-xl px-6 text-base bg-blue-600 hover:bg-blue-700"
                   >
                     <Link href="/dashboard">
-                      <span className="text-nowrap">Start Hiring</span>
+                      <span className="text-nowrap">Start Hiring Smarter</span>
                     </Link>
                   </Button>
                   <Button
                     key={2}
                     asChild
                     size="lg"
-                    variant="ghost"
-                    className="rounded-xl px-5"
+                    variant="outline"
+                    className="rounded-xl px-6 text-base border-2"
                   >
-                    <Link href="/dashboard">
-                      <span className="text-nowrap">Schedule Demo</span>
+                    <Link href="#how-it-works">
+                      <span className="text-nowrap">See How It Works</span>
                     </Link>
                   </Button>
                 </AnimatedGroup>
