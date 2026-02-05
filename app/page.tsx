@@ -2,6 +2,7 @@
 
 import HeroSection from '@/components/landing/HeroSection';
 import Features from '@/components/landing/Features';
+import HireFromAnywhere from '@/components/landing/HireFromAnywhere';
 import About from '@/components/landing/About';
 import Footer from '@/components/layout/Footer';
 
@@ -10,6 +11,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background">
       <HeroSection />
       <Features />
+      <HireFromAnywhere />
       <About />
       <Footer />
     </div>
