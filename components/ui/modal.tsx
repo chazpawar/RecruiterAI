@@ -51,12 +51,12 @@ const Modal = ({
         {(title || description) && (
           <DialogHeader className="pb-4 border-b border-gray-200 dark:border-gray-700">
             {title && (
-              <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-white">
+              <DialogTitle className="text-xl font-semibold text-foreground">
                 {title}
               </DialogTitle>
             )}
             {description && (
-              <DialogDescription className="text-gray-600 dark:text-gray-400">
+              <DialogDescription className="text-muted-foreground">
                 {description}
               </DialogDescription>
             )}
