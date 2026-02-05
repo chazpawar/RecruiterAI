@@ -8,12 +8,12 @@ export default function About() {
     <section id="about" className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
         <h2 className="relative z-10 max-w-xl text-4xl font-medium lg:text-5xl text-left">
-          The TalentFlow platform transforms your hiring process.
+          The RecruiterAI platform transforms your hiring process.
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
           <div className="relative space-y-4">
             <p className="text-muted-foreground text-left">
-              TalentFlow is evolving to be more than just recruitment software.{' '}
+              RecruiterAI is evolving to be more than just recruitment software.{' '}
               <span className="text-accent-foreground font-bold">
                 It supports an entire hiring ecosystem
               </span>{' '}
@@ -51,7 +51,7 @@ export default function About() {
               <Image
                 src="/exercice.png"
                 className="rounded-[15px] shadow object-cover"
-                alt="TalentFlow platform illustration"
+                alt="RecruiterAI platform illustration"
                 width={1206}
                 height={612}
               />

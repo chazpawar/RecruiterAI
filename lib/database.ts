@@ -15,6 +15,7 @@ import {
   type Note,
   type AssessmentResponse,
 } from './types';
+import { generateSeedData } from '@/data/seed-data';
 
 interface Settings {
   id?: number;
@@ -22,7 +23,7 @@ interface Settings {
   value: unknown;
 }
 
-class TalentFlowDB extends Dexie {
+class RecruiterAIDB extends Dexie {
   jobs!: Table<Job>;
   candidates!: Table<Candidate>;
   assessments!: Table<Assessment>;
@@ -32,7 +33,7 @@ class TalentFlowDB extends Dexie {
   settings!: Table<Settings>;
 
   constructor() {
-    super('TalentFlowDB');
+    super('RecruiterAIDB');
     
     this.version(1).stores({
       jobs: '++id, title, slug, status, order, createdAt, updatedAt',
@@ -84,7 +85,7 @@ class TalentFlowDB extends Dexie {
 }
 
 // Create database instance
-export const db = new TalentFlowDB();
+export const db = new RecruiterAIDB();
 
 // Filter types
 interface JobFilters {
@@ -575,6 +576,50 @@ export class DatabaseService {
     } catch (error) {
       console.error('Debug: Error checking job:', error);
       throw error;
+    }
+  }
+  
+  // Seed database with initial data
+  static async seedDatabase(): Promise<boolean> {
+    try {
+      // Check if data already exists
+      const stats = await this.getStats();
+      if (stats.jobs > 0) {
+        console.log('Database already seeded, skipping...');
+        return false;
+      }
+      
+      console.log('Seeding database with initial data...');
+      const { jobs, candidates, assessments } = generateSeedData();
+      
+      // Insert jobs
+      await db.jobs.bulkPut(jobs);
+      console.log(`Seeded ${jobs.length} jobs`);
+      
+      // Insert candidates
+      await db.candidates.bulkPut(candidates);
+      console.log(`Seeded ${candidates.length} candidates`);
+      
+      // Insert assessments
+      await db.assessments.bulkPut(assessments);
+      console.log(`Seeded ${assessments.length} assessments`);
+      
+      console.log('Database seeding complete!');
+      return true;
+    } catch (error) {
+      console.error('Error seeding database:', error);
+      throw error;
+    }
+  }
+  
+  // Check if database needs seeding
+  static async needsSeeding(): Promise<boolean> {
+    try {
+      const stats = await this.getStats();
+      return stats.jobs === 0;
+    } catch (error) {
+      console.error('Error checking if database needs seeding:', error);
+      return true;
     }
   }
 }

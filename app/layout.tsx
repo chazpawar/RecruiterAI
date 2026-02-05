@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/theme-provider";
+import { DatabaseProvider } from "@/components/database-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TalentFlow - Modern Recruitment Platform",
+  title: "RecruiterAI - Modern Recruitment Platform",
   description: "Streamline your hiring process with AI-powered candidate management, assessments, and analytics.",
 };
 
@@ -24,7 +25,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <DatabaseProvider>
+            {children}
+          </DatabaseProvider>
           <Toaster
             position="top-right"
             toastOptions={{

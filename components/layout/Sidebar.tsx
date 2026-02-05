@@ -42,14 +42,14 @@ export default function Sidebar() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-[#1f1687] rounded-lg flex items-center justify-center">
-                  <span className="text-white font-semibold text-sm">T</span>
+                  <span className="text-white font-semibold text-sm">R</span>
                 </div>
                 <div>
                   <h1 className="text-sm font-semibold text-gray-900 leading-tight">
-                    Talent Flow
+                    RecruiterAI
                   </h1>
                   <p className="text-xs text-gray-500 leading-tight">
-                    hello@talentflow.com
+                    hello@recruiterai.com
                   </p>
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default function Sidebar() {
         {/* Copyright Footer */}
         <div className="mt-4 pt-4 border-t border-gray-200">
           <p className="text-xs text-gray-500 text-center">
-            © 2025 Talent Flow
+            © 2025 RecruiterAI
           </p>
         </div>
       </div>

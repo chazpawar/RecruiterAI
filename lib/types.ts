@@ -1,4 +1,4 @@
-// Core data types for TalentFlow
+// Core data types for RecruiterAI
 
 export const JOB_STATUS = {
   ACTIVE: 'active',

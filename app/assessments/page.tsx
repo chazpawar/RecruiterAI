@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/tooltip';
 import Modal, { ModalBody, ModalFooter } from '@/components/ui/modal';
 import { useSearch } from '@/hooks/use-search';
+import Layout from '@/components/layout/Layout';
 
 interface EnhancedAssessment extends Assessment {
   jobTitle: string;
@@ -212,15 +213,18 @@ function AssessmentsPageContent() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
+      <Layout>
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+      </Layout>
     );
   }
 
   return (
-    <TooltipProvider>
-      <div className="h-full flex flex-col">
+    <Layout>
+      <TooltipProvider>
+        <div className="h-full flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-start mb-2">
           <div className="flex-1">
@@ -399,6 +403,7 @@ function AssessmentsPageContent() {
         </Modal>
       </div>
     </TooltipProvider>
+    </Layout>
   );
 }
 
@@ -537,10 +542,10 @@ function AssessmentCard({
                     {assessment.title}
                   </h3>
                   <span
-                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
+                    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
                       assessment.status === 'active'
-                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                        : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        : 'bg-amber-50 text-amber-700 border border-amber-200'
                     }`}
                   >
                     {assessment.status === 'active' ? 'Active' : 'Draft'}
@@ -561,10 +566,10 @@ function AssessmentCard({
             </p>
 
             <div className="flex flex-wrap gap-2 justify-start">
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
                 {assessment.passRate}% pass rate
               </span>
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-violet-50 text-violet-700 border border-violet-200">
                 {assessment.avgScore} avg score
               </span>
             </div>

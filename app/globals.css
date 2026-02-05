@@ -136,30 +136,30 @@
 }
 
 .dark {
-  /* Dark Mode Colors based on provided palette */
-  --background: #000000; /* Dark Primary BG */
-  --foreground: oklch(0.985 0 0);
-  --card: #404040; /* Dark Secondary BG */
-  --card-foreground: oklch(0.985 0 0);
-  --popover: #404040;
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: #3B82F6; /* Dark Primary (same as light) */
+  /* Dark Mode - Now uses white/light theme (same as light mode) */
+  --background: #EFF6FF; /* Light Primary BG */
+  --foreground: oklch(0.145 0 0);
+  --card: #FFFFFF; /* Light Secondary BG */
+  --card-foreground: oklch(0.145 0 0);
+  --popover: #FFFFFF;
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #3B82F6; /* Primary */
   --primary-foreground: #FFFFFF;
-  --secondary: #737373; /* Dark Secondary */
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: #404040; /* Dark Secondary BG */
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: #404040;
-  --accent-foreground: oklch(0.985 0 0);
+  --secondary: #F3F4F6; /* Light Secondary */
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: #F3F4F6; /* Light Secondary */
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: #F3F4F6;
+  --accent-foreground: oklch(0.205 0 0);
   
-  /* Accent colors (same as light mode for consistency) */
+  /* Accent colors (same as light mode) */
   --accent-1: #A5D8FF;
   --accent-2: #D0BCFF;
   --accent-3: #B197FC;
   
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
   --ring: #3B82F6;
   
   /* Chart colors */
@@ -170,33 +170,33 @@
   --chart-5: oklch(0.6 0.16 265.638);
   
   /* Sidebar */
-  --sidebar: #404040;
-  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #3B82F6;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #737373;
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-accent: #EFF6FF;
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: #3B82F6;
   
-  /* Dark mode form field enhancements */
-  --input-bg: #404040;
-  --input-border: #737373;
+  /* Form field enhancements (same as light mode) */
+  --input-bg: #f5f6fb;
+  --input-border: #d1d5e3;
   --input-focus: #3B82F6;
-  --section-bg: #404040;
-  --section-border: #737373;
-  --muted-enhanced: #404040;
-  --muted-border: #737373;
+  --section-bg: #f8f9fd;
+  --section-border: #e5e7f0;
+  --muted-enhanced: #f0f1f7;
+  --muted-border: #dde0eb;
   
-  /* Dark mode accent colors */
-  --accent-blue-light: oklch(0.28 0.06 256);
-  --accent-blue-border: oklch(0.48 0.12 256);
-  --accent-purple-light: oklch(0.32 0.08 290);
-  --accent-purple-border: oklch(0.52 0.15 290);
-  --accent-green-light: oklch(0.32 0.08 143);
-  --accent-green-border: oklch(0.52 0.15 143);
-  --accent-orange-light: oklch(0.35 0.1 40);
-  --accent-orange-border: oklch(0.55 0.18 40);
+  /* Accent colors (same as light mode) */
+  --accent-blue-light: #e3f2fd;
+  --accent-blue-border: #90caf9;
+  --accent-purple-light: #f3e5f5;
+  --accent-purple-border: #ce93d8;
+  --accent-green-light: #e8f5e9;
+  --accent-green-border: #81c784;
+  --accent-orange-light: #fff3e0;
+  --accent-orange-border: #ffb74d;
 }
 
 @layer base {
@@ -259,4 +259,19 @@
 
 .search-button:disabled {
   @apply bg-primary/50 text-white/50 cursor-not-allowed;
+}
+
+/* Floating animation for bubbles - GPU accelerated */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateZ(0);
+  }
+  50% {
+    transform: translateY(-8px) translateZ(0);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
 }

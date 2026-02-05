@@ -16,9 +16,9 @@ interface FooterLinkGroup {
 const Logo = () => (
   <div className="flex items-center space-x-2">
     <div className="w-8 h-8 bg-gradient-to-br from-[#1f1687] to-purple-600 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-sm">T</span>
+      <span className="text-white font-bold text-sm">R</span>
     </div>
-    <span className="text-xl font-bold text-foreground">TalentFlow</span>
+    <span className="text-xl font-bold text-foreground">RecruiterAI</span>
   </div>
 );
 
@@ -101,7 +101,7 @@ export default function Footer() {
               <Logo />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-md">
-              Streamline your hiring process with TalentFlow. Find the best
+              Streamline your hiring process with RecruiterAI. Find the best
               talent faster with our comprehensive recruitment platform.
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
           <span className="text-muted-foreground order-last block text-center text-sm md:order-first">
-            © {new Date().getFullYear()} TalentFlow, All rights reserved
+            © {new Date().getFullYear()} RecruiterAI, All rights reserved
           </span>
           <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
             <a

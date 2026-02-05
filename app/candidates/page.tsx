@@ -40,6 +40,7 @@ import {
 } from '@/components/ui/tooltip';
 import Modal, { ModalBody, ModalFooter } from '@/components/ui/modal';
 import { useSearch } from '@/hooks/use-search';
+import Layout from '@/components/layout/Layout';
 
 function CandidatesPageContent() {
   const router = useRouter();
@@ -186,15 +187,18 @@ function CandidatesPageContent() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
+      <Layout>
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+      </Layout>
     );
   }
 
   return (
-    <TooltipProvider>
-      <div className="h-full flex flex-col">
+    <Layout>
+      <TooltipProvider>
+        <div className="h-full flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-start mb-2">
           <div className="flex-1">
@@ -395,6 +399,7 @@ function CandidatesPageContent() {
         </Modal>
       </div>
     </TooltipProvider>
+    </Layout>
   );
 }
 

@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, MouseEvent } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const Logo = () => (
   <div className="flex items-center space-x-2">
-    <div className="w-8 h-8 bg-[#1a1a2e] rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-sm">T</span>
+    <div className="w-8 h-8 bg-gradient-to-br from-[#1f1687] to-purple-600 rounded-lg flex items-center justify-center">
+      <span className="text-white font-bold text-sm">R</span>
     </div>
-    <span className="text-xl font-semibold text-foreground">TalentFlow</span>
+    <span className="text-xl font-bold text-foreground">RecruiterAI</span>
   </div>
 );
 
@@ -27,6 +28,15 @@ const menuItems: MenuItem[] = [
 
 export function HeroHeader() {
   const [menuState, setMenuState] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSmoothScroll = (
     e: MouseEvent<HTMLAnchorElement>,
@@ -55,81 +65,100 @@ export function HeroHeader() {
   };
 
   return (
-    <header className="w-full bg-background border-b border-border/40">
-      <nav className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" aria-label="home">
-            <Logo />
-          </Link>
+    <header>
+      <nav data-state={menuState && 'active'} className="fixed z-20 w-full px-2">
+        <div
+          className={cn(
+            'mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12',
+            isScrolled &&
+              'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5'
+          )}
+        >
+          <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+            <div className="flex w-full justify-between lg:w-auto">
+              <Link
+                href="/"
+                aria-label="home"
+                className="flex items-center space-x-2"
+              >
+                <Logo />
+              </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            <ul className="flex gap-8 text-sm">
-              {menuItems.map((item, index) => (
-                <li key={index}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href)}
-                    className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <button
+                onClick={() => setMenuState(!menuState)}
+                aria-label={menuState === true ? 'Close Menu' : 'Open Menu'}
+                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
+              >
+                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+              </button>
+            </div>
 
-          {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button asChild variant="outline" size="sm" className="rounded-lg">
-              <Link href="/dashboard">Login</Link>
-            </Button>
-            <Button asChild size="sm" className="rounded-lg bg-[#1a1a2e] hover:bg-[#2a2a3e]">
-              <Link href="/dashboard">Sign Up</Link>
-            </Button>
-          </div>
+            <div className="absolute inset-0 m-auto hidden size-fit lg:block">
+              <ul className="flex gap-8 text-sm">
+                {menuItems.map((item, index) => (
+                  <li key={index}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleSmoothScroll(e, item.href)}
+                      className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer"
+                    >
+                      <span>{item.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMenuState(!menuState)}
-            aria-label={menuState ? 'Close Menu' : 'Open Menu'}
-            className="lg:hidden p-2"
-          >
-            {menuState ? (
-              <X className="size-6" />
-            ) : (
-              <Menu className="size-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {menuState && (
-          <div className="lg:hidden py-4 border-t border-border/40">
-            <ul className="space-y-4">
-              {menuItems.map((item, index) => (
-                <li key={index}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href)}
-                    className="text-muted-foreground hover:text-foreground block py-2"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-border/40">
-              <Button asChild variant="outline" className="w-full">
-                <Link href="/dashboard">Login</Link>
-              </Button>
-              <Button asChild className="w-full bg-[#1a1a2e] hover:bg-[#2a2a3e]">
-                <Link href="/dashboard">Sign Up</Link>
-              </Button>
+            <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
+              <div className="lg:hidden">
+                <ul className="space-y-6 text-base">
+                  {menuItems.map((item, index) => (
+                    <li key={index}>
+                      <a
+                        href={item.href}
+                        onClick={(e) => handleSmoothScroll(e, item.href)}
+                        className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer"
+                      >
+                        <span>{item.name}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className={cn(isScrolled && 'lg:hidden')}
+                >
+                  <Link href="/dashboard">
+                    <span>Login</span>
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="sm"
+                  className={cn(isScrolled && 'lg:hidden')}
+                >
+                  <Link href="/dashboard">
+                    <span>Sign Up</span>
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="sm"
+                  className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}
+                >
+                  <Link href="/dashboard">
+                    <span>Get Started</span>
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );
