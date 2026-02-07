@@ -79,7 +79,7 @@ export default function HireFromAnywhere() {
   }, []);
 
   return (
-    <section id="hire-from-anywhere" className="py-16 md:py-24 bg-gradient-to-b from-white to-blue-50/30 overflow-hidden">
+    <section id="hire-from-anywhere" className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="mx-auto max-w-5xl px-6 text-center mb-12">
         <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
           Post Once, Reach Everywhere

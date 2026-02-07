@@ -132,8 +132,8 @@ export default function JobForm({
     <div className="max-w-4xl mx-auto">
       <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
         {/* Basic Information */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Basic Information
           </h3>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -250,8 +250,8 @@ export default function JobForm({
         </div>
 
         {/* Description */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Job Description
           </h3>
           <div>
@@ -264,7 +264,7 @@ export default function JobForm({
                 required: 'Description is required',
               })}
               rows={5}
-              className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm bg-white"
               placeholder="Describe the role, responsibilities, and what makes it exciting..."
             />
             {errors.description && (
@@ -276,17 +276,16 @@ export default function JobForm({
         </div>
 
         {/* Requirements */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Requirements
           </h3>
           <div className="space-y-3">
             {watchedRequirements.map((_, index) => (
               <div key={index} className="flex items-center space-x-3">
-                <input
-                  type="text"
+                <Input
                   {...register(`requirements.${index}` as const)}
-                  className="flex-1 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  className="flex-1"
                   placeholder="Enter a requirement..."
                 />
                 <Button
@@ -294,7 +293,7 @@ export default function JobForm({
                   variant="outline"
                   size="sm"
                   onClick={() => removeRequirement(index)}
-                  className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/30"
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
                 >
                   Remove
                 </Button>
@@ -305,7 +304,7 @@ export default function JobForm({
               variant="outline"
               size="sm"
               onClick={addRequirement}
-              className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+              className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
             >
               Add Requirement
             </Button>
@@ -313,17 +312,16 @@ export default function JobForm({
         </div>
 
         {/* Benefits */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Benefits
           </h3>
           <div className="space-y-3">
             {watchedBenefits.map((_, index) => (
               <div key={index} className="flex items-center space-x-3">
-                <input
-                  type="text"
+                <Input
                   {...register(`benefits.${index}` as const)}
-                  className="flex-1 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  className="flex-1"
                   placeholder="Enter a benefit..."
                 />
                 <Button
@@ -331,7 +329,7 @@ export default function JobForm({
                   variant="outline"
                   size="sm"
                   onClick={() => removeBenefit(index)}
-                  className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/30"
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
                 >
                   Remove
                 </Button>
@@ -342,7 +340,7 @@ export default function JobForm({
               variant="outline"
               size="sm"
               onClick={addBenefit}
-              className="text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-900/30"
+              className="text-green-600 hover:text-green-700 hover:bg-green-50"
             >
               Add Benefit
             </Button>
@@ -350,17 +348,16 @@ export default function JobForm({
         </div>
 
         {/* Tags */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Tags
           </h3>
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <input
-                type="text"
+              <Input
                 id="tag-input"
                 placeholder="Enter a tag..."
-                className="flex-1 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="flex-1"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -383,7 +380,7 @@ export default function JobForm({
                     input.value = '';
                   }
                 }}
-                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
               >
                 Add Tag
               </Button>
@@ -394,13 +391,13 @@ export default function JobForm({
                 {watchedTags.map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
+                    className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
                   >
                     {tag}
                     <button
                       type="button"
                       onClick={() => removeTag(tag)}
-                      className="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600 dark:hover:bg-blue-800"
+                      className="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600"
                     >
                       ×
                     </button>
@@ -412,7 +409,7 @@ export default function JobForm({
         </div>
 
         {/* Form Actions */}
-        <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
           <Button
             type="button"
             variant="outline"

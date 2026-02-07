@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
 const testimonials = [
   {
-    name: 'Rahul Mehta',
-    title: 'Founder, TechStart Solutions',
+    name: "Rahul Mehta",
+    title: "Founder, TechStart Solutions",
     quote:
-      'We went from 6 weeks to hire a developer to just 10 days. RecruiterAI handled everything from screening to scheduling. Game changer for our 5-person startup.',
-    tag: 'Startup Founder',
+      "We went from 6 weeks to hire a developer to just 10 days. RecruiterAI handled everything from screening to scheduling. Game changer for our 5-person startup.",
+    tag: "Founder",
   },
   {
-    name: 'Maya Patel',
-    title: 'Head of People, ScaleUp Labs',
+    name: "Maya Patel",
+    title: "Head of People, ScaleUp Labs",
     quote:
-      'Our hiring pipeline finally feels predictable. The AI shortlists are accurate and the interview scheduling saves hours every week.',
-    tag: 'HR Lead',
+      "Our hiring pipeline finally feels predictable. The AI shortlists are accurate and the interview scheduling saves hours every week.",
+    tag: "HR Lead",
   },
   {
-    name: 'Arjun Nair',
-    title: 'Recruiting Manager, GrowthWorks',
+    name: "Arjun Nair",
+    title: "Recruiting Manager, GrowthWorks",
     quote:
-      'We doubled our interview capacity without adding more recruiters. The automated workflows keep candidates warm and engaged.',
-    tag: 'Recruiting Manager',
+      "We doubled our interview capacity without adding more recruiters. The automated workflows keep candidates warm and engaged.",
+    tag: "Recruiting",
   },
 ];
 
@@ -48,9 +48,9 @@ export default function Testimonials() {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-inner">
                     <span className="text-sm font-semibold text-slate-900">
                       {testimonial.name
-                        .split(' ')
+                        .split(" ")
                         .map((part) => part[0])
-                        .join('')}
+                        .join("")}
                     </span>
                   </div>
                   <div>

@@ -106,7 +106,7 @@ export default function AutomationFlows() {
   const nodeTypesMemo = useMemo(() => nodeTypes, []);
 
   return (
-    <section id="how-it-works" className="py-16 md:py-24 bg-gradient-to-b from-white via-sky-50/70 to-white">
+    <section id="how-it-works" className="py-16 md:py-24 bg-white">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <h2 className="text-balance text-4xl font-semibold lg:text-5xl">

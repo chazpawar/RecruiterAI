@@ -90,7 +90,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t bg-background pt-20">
+    <footer className="border-t bg-white pt-20">
       <div className="mx-auto max-w-5xl px-6">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2 -ml-4 text-left">

@@ -15,9 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overscroll-none">
       <body
-        className="font-sans antialiased"
+        className="font-sans antialiased overscroll-none"
       >
         <ThemeProvider
           attribute="class"
